@@ -1,23 +1,27 @@
 /**
  * @file main.c
  * @ref BTS1230
- * @copyright Bern University of Applied Sciences, 2021. All rights reserved.
+ * @copyright Bern University of Applied Sciences, 2023. All rights reserved.
  *
- * @author Pascal Mainini <pascal.mainini@bfh.ch>
- * @date 20.09.2021
+ * @author Paul Gregor Holderbaum Ondoua <paul.holderbaumondoua@students.bfh.ch>
+ * @date 01.12.2023
  *
- * @brief Demonstrate modular C programs (main module).
+ * @brief  (main module).
  *
  * This is the main module of the modular programming example. It contains the
  * main()-function.
  */
-#include "circle.h" // note " " instead of < >!
+
+#include "../include/io.h" 
+#include "../include/keygen.h"
+#include "../include/encrypt.h"
+#include "../include/decrypt.h"
 #include <stdio.h>
+#include <stddef.h>
 
 int main(void) {
-  double radius = 42.23;
-  printf("The circumference of a circle with radius %.2f is %.2f.\n", radius,
-         circumference(radius));
-  printf("The area of a circle with radius %.2f is %.2f.\n", radius,
-         area(radius));
+	read_number();
+	is_prime(1);
+	encrypt(1,1,"a", "aa",1);
+	decrypt(1,1,"a","aa",1);
 }
