@@ -20,8 +20,10 @@
 #include <stddef.h>
 
 int main(void) {
-	read_number();
-	is_prime(1);
+	int n =	read_number();
+
+	printf("\n%d\n", n);
+	/*is_prime(1);
 	encrypt(1,1,"a", "aa",1);
-	decrypt(1,1,"a","aa",1);
+	decrypt(1,1,"a","aa",1);*/
 }

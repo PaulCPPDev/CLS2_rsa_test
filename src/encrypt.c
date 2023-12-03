@@ -33,5 +33,6 @@
  */
 int encrypt(long e, long n, char msg[], long cryp[], size_t elements){
         printf("encrypt()\n");
+	return 1;
 }
 

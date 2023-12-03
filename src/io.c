@@ -25,7 +25,38 @@
  * @return A positive int value, or −1 in case of error.
  */
 int read_number(){
-	printf("read_number()\n");
+	double number = -1;
+	int count = 0;
+
+	while(number < 0 && count < 3){
+		printf("Enter a positive number: ");
+		int numberRead = scanf("%lf", &number);
+		if(numberRead == 1){
+			printf("\n");
+			count++;	
+		}
+		else{
+			count++;
+			while(numberRead != 1 && count < 3) {
+		
+				// read the input until there is a new line without storing the value
+				scanf("%*[^\n]");
+				printf("\nEnter a positive number: ");
+				numberRead = scanf("%lf", &number);
+
+				printf(" \n");
+				count++;
+			}
+		}
+	}
+	
+	if(number > 0){
+		return (int)number;
+	}
+	else{
+		return -1;
+	}
+
 }
 
 

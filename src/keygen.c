@@ -34,6 +34,7 @@
  */
 int is_prime(int number){
         printf("is_prime()\n");
+	return 1;
 }
 
 
@@ -53,6 +54,7 @@ int is_prime(int number){
  */
 long gcd(long a, long b){
 	printf("gcd()\n");
+	return 1;
 }
 
 
@@ -72,6 +74,7 @@ long gcd(long a, long b){
  */
 long modulus(int p, int q){
 	printf("modulus()\n");
+	return 1;
 }
 
 
@@ -91,6 +94,7 @@ long modulus(int p, int q){
  */
 long phi(int p, int q){
 	printf("phi()\n");
+	return 1;
 }
 
 
@@ -108,6 +112,7 @@ long phi(int p, int q){
  */
 long public_exponent(long phi){
 	printf("public_exponent()\n");
+	return 1;
 }
 
 
@@ -126,6 +131,7 @@ long public_exponent(long phi){
  */
 long private_exponent(long e, long phi){
 	printf("private_exponent()\n");
+	return 1;
 }
 
 

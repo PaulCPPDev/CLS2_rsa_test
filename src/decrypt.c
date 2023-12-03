@@ -33,6 +33,7 @@
  */
 int decrypt(long d, long n, long cryp[], char msg[], size_t elements){
         printf("decrypt()\n");
+	return 1;
 }
 
 
