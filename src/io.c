@@ -74,7 +74,18 @@ int read_number(){
  * @return The number of values written or −1 in case of an error.
  */
 int display_cryp(long cryp[], size_t elements){
-	printf("display_cryp\n");
+	// check that the array is not empty
+	if((cryp != NULL) && (elements > 0) ){
+		int i;
+		for(i=0; i< elements; i++){
+			printf("%ld ", cryp[i]);
+		}
+		printf("\n");
+		return i;
+	}
+	else {
+		return -1;
+	}
 }
 
 
