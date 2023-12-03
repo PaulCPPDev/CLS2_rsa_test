@@ -20,21 +20,12 @@
 #include <stddef.h>
 
 int main(void) {
-	int n = 0;
-	long arr2[10];
-	printf("Enter the number of longs: ");
-	scanf("%d", &n);
-	long arr[n];
-	printf("\nEnter %d longs\n",n);
-	for(int i = 0; i<n; i++){
-		printf("arr[%d] = ",i);
-		scanf("%ld", &arr[i]);
-		printf("\n");
-	}
+	char  msg[] = "message";
+	int size = (sizeof(msg) / sizeof(msg[0])) -1;
 
 	printf("\n");
-	display_cryp(arr, n);
-	printf("\n");
+	int n = display_msg(msg, size);
+	printf("\n%d\n", n);
 
 	/*is_prime(1);
 	encrypt(1,1,"a", "aa",1);
