@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 #include <stddef.h>
-
+#include <stdlib.h>
 
 
 /**
@@ -104,8 +104,34 @@ int display_cryp(long cryp[], size_t elements){
  * @param array of type long, number of elements in the array
  * @return The number of values read, or −1 in case of an error.
  */
+
+/*
 int read_cryp(long cryp[], size_t elements){
-	printf("read_cryp\n");
+	int count = 0;
+	while( getchar() != '\n' && count < elements){
+		if(scanf("%ld", &cryp[count++])!=1)
+			return -1;
+		if(cryp[count] == 0)
+			break;
+	}
+	return count;
+}
+*/
+int read_cryp(long cryp[], size_t elements){
+	int i;
+	for(i=0; i< elements; i++){
+		// Invalid input
+		if(scanf("%ld", &cryp[i])!= 1){
+			return -1;
+		}
+
+		// check if zero was entered
+		if(cryp[i] == 0){
+			break;
+		}
+	}
+
+	return i;
 }
 
 

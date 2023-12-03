@@ -20,12 +20,15 @@
 #include <stddef.h>
 
 int main(void) {
-	char  msg[] = "message";
-	int size = (sizeof(msg) / sizeof(msg[0])) -1;
+	long  cryp[10];
+	int size = (sizeof(cryp) / sizeof(cryp[0]));
 
-	printf("\n");
-	int n = display_msg(msg, size);
-	printf("\n%d\n", n);
+	int r = read_cryp(cryp, size);
+	if(r>0){
+		printf("\n");
+		int n = display_cryp(cryp, r);
+		printf("\n%d\n", n);
+	}
 
 	/*is_prime(1);
 	encrypt(1,1,"a", "aa",1);
