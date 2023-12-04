@@ -73,12 +73,25 @@ int is_prime(int number){
  * Computes the greatest common divisor of two numbers. 
  * It is an error if the numbers are equal or any of them is negative.
  *
+ * We used the Euclidiean Algorithm to find the GCD of 2 numbers. The pseudo code was
+ * obtained on Coursera from the course "Algorithms and Datastructures" from UC Sandiego.
+ *
  * @param 2 numbers of type long.
  * @return The greatest common divisor of the two arguments, or −1 in case of an error.
  */
 long gcd(long a, long b){
-	printf("gcd()\n");
-	return 1;
+	// validate the input
+	if( (&a == NULL) || (&b == NULL) || (a == b) || (a < 0) || (b < 0)  ){
+		return -1;
+	}
+	else{
+		if(b == 0)
+			return a;
+		long remainder = a%b;
+		return gcd(b,remainder);
+	
+	}
+
 }
 
 

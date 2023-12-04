@@ -20,16 +20,19 @@
 #include <stddef.h>
 
 int main(void) {
-	int n,prime;
-	printf("Enter a number: ");
-	scanf("%d",&n);
-	prime = is_prime(n);
-	if(prime == 1)
-		printf("\nPrime\n");
-	if(prime == 0)
-		printf("\nNot prime\n");
-	if(prime == -1)
-		printf("\nInvalid\n");
+	long a,b=0;
+	long gcdab;
+	printf("Enter number a: ");
+	scanf("%ld",&a);
+	printf("\nEnter number b: ");
+	scanf("%ld", &b);
+	
+	gcdab = gcd(a,b);
+	if(gcdab > 0)
+		printf("\nGCD = %ld\n", gcdab);
+	if(gcdab == -1)
+		printf("\nError\n");
+
 
 	/*is_prime(1);
 	encrypt(1,1,"a", "aa",1);
