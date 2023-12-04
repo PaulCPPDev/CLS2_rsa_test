@@ -20,15 +20,16 @@
 #include <stddef.h>
 
 int main(void) {
-	long  cryp[10];
-	int size = (sizeof(cryp) / sizeof(cryp[0]));
-
-	int r = read_cryp(cryp, size);
-	if(r>0){
-		printf("\n");
-		int n = display_cryp(cryp, r);
-		printf("\n%d\n", n);
-	}
+	int n,prime;
+	printf("Enter a number: ");
+	scanf("%d",&n);
+	prime = is_prime(n);
+	if(prime == 1)
+		printf("\nPrime\n");
+	if(prime == 0)
+		printf("\nNot prime\n");
+	if(prime == -1)
+		printf("\nInvalid\n");
 
 	/*is_prime(1);
 	encrypt(1,1,"a", "aa",1);

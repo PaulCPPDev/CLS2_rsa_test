@@ -28,13 +28,37 @@
  * Thus, the function also has to ensure that the number is 100 <= number <= 1000.
  * Furthermore, negative numbers are not allowed as well.
  *
+ *
+ * The code is inspired from the mathematical definition of a prime number on wikipedia, which is that
+ * a prime number is a number greater than one and  only divisible by one and itself.
+ *
  * @param The number you want to check if it is prime.
  * @return 1 if the number is prime, 0 if the number is not prime, 
  * −1 if the number is invalid or an error has occurred.
  */
 int is_prime(int number){
-        printf("is_prime()\n");
-	return 1;
+	if((number == NULL) || !( (number >=100) &&  (number <= 1000)) ){
+		return -1;
+	}
+	else if (number < 0){
+		return 0;
+	}
+	else{
+		int number_of_divisions = 0;
+		
+		// check if the number is prime
+		for(int i = 1; i <= number; i++){
+			if((number%i) ==0)
+				number_of_divisions++;
+		}
+		if(number_of_divisions == 2){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
+        
 }
 
 
