@@ -110,8 +110,15 @@ long gcd(long a, long b){
  * @return The RSA modulus n derived from p and q, or −1 in case of an error.
  */
 long modulus(int p, int q){
-	printf("modulus()\n");
-	return 1;
+	// validate the input
+	if( (p == NULL) || (q == NULL) || (p <= 0) || (q <= 0)  ){
+		return -1;
+       	}
+	else{
+		return (long)(p*q);
+
+        }
+
 }
 
 

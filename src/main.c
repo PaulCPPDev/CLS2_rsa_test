@@ -20,17 +20,17 @@
 #include <stddef.h>
 
 int main(void) {
-	long a,b=0;
-	long gcdab;
-	printf("Enter number a: ");
-	scanf("%ld",&a);
-	printf("\nEnter number b: ");
-	scanf("%ld", &b);
+	long p,q=0;
+	long modul;
+	printf("Enter a Prime number p: ");
+	scanf("%ld",&p);
+	printf("\nEnter a Prime number q: ");
+	scanf("%ld", &q);
 	
-	gcdab = gcd(a,b);
-	if(gcdab > 0)
-		printf("\nGCD = %ld\n", gcdab);
-	if(gcdab == -1)
+	modul = modulus(p,q);
+	if(modul > 0)
+		printf("\nmodulus = %ld\n", modul);
+	if(modul == -1)
 		printf("\nError\n");
 
 
