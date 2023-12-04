@@ -163,8 +163,43 @@ long phi(int p, int q){
  * @return The public key exponent e, or −1 in case of an error.
  */
 long public_exponent(long phi){
-	printf("public_exponent()\n");
-	return 1;
+	// input validation.
+	if(phi <= 0){
+		return -1;
+	}
+	else{
+		// store the possible values of e
+		// the exponent e is mostly in the range
+		// e = 3, 5, 17, 65537
+		long public_exponent = 3;
+
+		for(long i = 3; i < phi; i++){
+			// ignore all even numbers
+			if((i%2)==0)
+				continue;
+			else {
+				// find the GCD using Euclidiean algorithm from Chatgpt
+				long number_1 = i;
+				long number_2 = phi;
+				while(number_2 != 0){
+					long temp = number_2;
+					number_2 = number_1 % number_2;
+					number_1 = temp;
+				}
+
+				// Check if the GCD = 1
+				if(number_1 ==1){
+					public_exponent = i;
+					break;
+				}
+
+			}
+		}
+
+
+
+		return public_exponent;
+	}
 }
 
 

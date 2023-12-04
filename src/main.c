@@ -20,21 +20,16 @@
 #include <stddef.h>
 
 int main(void) {
-	long p,q=0;
-	long modul;
-	printf("Enter a Prime number p: ");
-	scanf("%ld",&p);
-	printf("\nEnter a Prime number q: ");
-	scanf("%ld", &q);
+	long phi=0;
+	long exponent;
+	printf("Enter PHI(n) = (p-1)(q-1): ");
+	scanf("%ld",&phi);
 	
-	modul = phi(p,q);
-	if(modul > 0)
-		printf("\nPhi = %ld\n", modul);
-	if(modul == -1)
+	exponent = public_exponent(phi);
+	if(exponent >= 0)
+		printf("\ne = %ld\n", exponent);
+	if(exponent <= -1)
 		printf("\nError\n");
 
 
-	/*is_prime(1);
-	encrypt(1,1,"a", "aa",1);
-	decrypt(1,1,"a","aa",1);*/
 }
