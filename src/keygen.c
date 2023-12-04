@@ -37,7 +37,7 @@
  * −1 if the number is invalid or an error has occurred.
  */
 int is_prime(int number){
-	if((number == NULL) || !( (number >=100) &&  (number <= 1000)) ){
+	if( !( (number >=100) &&  (number <= 1000)) ){
 		return -1;
 	}
 	else if (number < 0){
@@ -81,7 +81,7 @@ int is_prime(int number){
  */
 long gcd(long a, long b){
 	// validate the input
-	if( (&a == NULL) || (&b == NULL) || (a == b) || (a < 0) || (b < 0)  ){
+	if( (a == b) || (a < 0) || (b < 0)  ){
 		return -1;
 	}
 	else{
@@ -111,7 +111,7 @@ long gcd(long a, long b){
  */
 long modulus(int p, int q){
 	// validate the input
-	if( (p == NULL) || (q == NULL) || (p <= 0) || (q <= 0)  ){
+	if( (p <= 0) || (q <= 0)  ){
 		return -1;
        	}
 	else{
@@ -137,8 +137,16 @@ long modulus(int p, int q){
  * @return The Euler’s totient ϕ, derived from p and q, or −1 in case of an error.
  */
 long phi(int p, int q){
-	printf("phi()\n");
-	return 1;
+	// validate the input
+	if( (p <= 0) || (q <= 0) || (p==q) ){
+		return -1;
+	}
+	else{
+		return (long) ((p-1) * (q-1));
+
+	}
+
+
 }
 
 

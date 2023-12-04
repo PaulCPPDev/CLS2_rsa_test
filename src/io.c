@@ -40,10 +40,10 @@ int read_number(){
 			while(numberRead != 1 && count < 3) {
 		
 				// read the input until there is a new line without storing the value
-				scanf("%*[^\n]");
-				printf("\nEnter a positive number: ");
-				numberRead = scanf("%lf", &number);
-
+				if(scanf("%*[^\n]")==1){
+					printf("\nEnter a positive number: ");
+					numberRead = scanf("%lf", &number);
+				}
 				printf(" \n");
 				count++;
 			}
@@ -76,7 +76,7 @@ int read_number(){
 int display_cryp(long cryp[], size_t elements){
 	// check that the array is not empty
 	if((cryp != NULL) && (elements > 0) ){
-		int i;
+		size_t i;
 		for(i=0; i< elements; i++){
 			printf("%ld ", cryp[i]);
 		}
@@ -131,7 +131,7 @@ int read_cryp(long cryp[], size_t elements){
 */
 
 int read_cryp(long cryp[], size_t elements){
-	int i;
+	size_t i;
 	for(i=0; i< elements; i++){
 		// Invalid input
 		if(scanf("%ld", &cryp[i])!= 1){
@@ -167,7 +167,7 @@ int read_cryp(long cryp[], size_t elements){
 int display_msg(char msg[], size_t elements){
 	// check the message is not empty
 	if((msg != NULL) && (elements > 0) ){
-		int i;
+		size_t i;
                 for(i = 0; i < elements; i++){
 			printf("%c", msg[i]);
 		}

@@ -27,9 +27,9 @@ int main(void) {
 	printf("\nEnter a Prime number q: ");
 	scanf("%ld", &q);
 	
-	modul = modulus(p,q);
+	modul = phi(p,q);
 	if(modul > 0)
-		printf("\nmodulus = %ld\n", modul);
+		printf("\nPhi = %ld\n", modul);
 	if(modul == -1)
 		printf("\nError\n");
 
