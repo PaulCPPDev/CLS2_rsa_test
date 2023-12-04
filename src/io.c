@@ -107,6 +107,18 @@ int display_cryp(long cryp[], size_t elements){
 
 /*
 int read_cryp(long cryp[], size_t elements){
+	int i = 0;
+	char temp;
+	do {
+		scanf("%ld%c", &cryp[i], &temp);
+		i++;
+	}while (temp != '\n');
+
+	return 0;
+}*/
+
+/*
+int read_cryp(long cryp[], size_t elements){
 	int count = 0;
 	while( getchar() != '\n' && count < elements){
 		if(scanf("%ld", &cryp[count++])!=1)
@@ -117,6 +129,7 @@ int read_cryp(long cryp[], size_t elements){
 	return count;
 }
 */
+
 int read_cryp(long cryp[], size_t elements){
 	int i;
 	for(i=0; i< elements; i++){
@@ -124,12 +137,18 @@ int read_cryp(long cryp[], size_t elements){
 		if(scanf("%ld", &cryp[i])!= 1){
 			return -1;
 		}
-
+	
 		// check if zero was entered
 		if(cryp[i] == 0){
+			if(i != elements -1){
+				i++;
+				cryp[i] =0;
+			}
 			break;
 		}
 	}
+
+	cryp[elements-1] = 0;
 
 	return i;
 }
