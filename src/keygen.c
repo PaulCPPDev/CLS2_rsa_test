@@ -175,9 +175,10 @@ long public_exponent(long phi){
 
 		for(long i = 3; i < phi; i++){
 			// ignore all even numbers
-			if((i%2)==0)
+			if(((i%2)==0) && (i!=2))
 				continue;
 			else {
+
 				// find the GCD using Euclidiean algorithm from Chatgpt
 				long number_1 = i;
 				long number_2 = phi;
@@ -207,6 +208,41 @@ long public_exponent(long phi){
 
 
 
+/**
+ * @brief Computes GCD with Extended Euclidiean Algorithm
+ *
+ * Computes the Extended Euclidean Algorithm.  The original source code is from
+ * geekforgeeks <https://www.geeksforgeeks.org/c-program-for-basic-and-extended-euclidean-algorithms-2/>
+ *
+ * @param 
+ * @return The GCD.
+ */
+
+long gcdExtended(long phi, long e, long* x, long* y)
+{
+    // Base Case
+    if (phi == 0) {
+        *x = 0;
+        *y = 1;
+        return e;
+    }
+ 
+    long  x1, y1; // To store results of recursive call
+    long gcd = gcdExtended(e % phi, phi, &x1, &y1);
+ 
+    // Update x and y using results of recursive
+    // call
+    *x = y1 - (e / phi) * x1;
+    *y = x1;
+ 
+    return gcd;
+}
+
+
+
+
+
+
 
 /**
  * @brief Generates the private key exponent.
@@ -217,8 +253,20 @@ long public_exponent(long phi){
  * @return The private key exponent d, or −1 in case of an error.
  */
 long private_exponent(long e, long phi){
-	printf("private_exponent()\n");
-	return 1;
+	if( (e<=0) || (phi<=0) ){
+		return -1;
+	}
+	else{
+		long d = 0; // private exponent
+		long x = 0; // second accumulator
+		long g = gcdExtended(phi, e, &x, &d); // gcd
+		if(g !=1 )
+			return -1;
+		if(d>=0)
+			return d;
+		else
+			return phi+d;
+	}
 }
 
 

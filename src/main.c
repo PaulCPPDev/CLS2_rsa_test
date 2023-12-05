@@ -21,11 +21,13 @@
 
 int main(void) {
 	long phi=0;
-	long exponent;
+	long exponent,e;
 	printf("Enter PHI(n) = (p-1)(q-1): ");
 	scanf("%ld",&phi);
+	printf("Enter a public exponent e: ");
+	scanf("%ld", &e);
 	
-	exponent = public_exponent(phi);
+	exponent = private_exponent(e,phi);
 	if(exponent >= 0)
 		printf("\ne = %ld\n", exponent);
 	if(exponent <= -1)
