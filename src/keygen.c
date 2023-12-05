@@ -257,7 +257,7 @@ long private_exponent(long e, long phi){
 		return -1;
 	}
 	else{
-		long d = 0; // private exponent
+		long d = 1; // private exponent
 		long x = 0; // second accumulator
 		long g = gcdExtended(phi, e, &x, &d); // gcd
 		if(g !=1 )
