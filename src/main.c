@@ -66,7 +66,7 @@ int main(void) {
 	if(scanf("%[^\n]", message) >= 1)
 		msg_size = strlen(message);
 		
-	printf("\nmsg_size = %d  message =%s",msg_size, message);
+	printf("\nmsg_size = %d  message =%s\n",msg_size, message);
 	
 	int was_encrypted = encrypt(e, n, message, cryp, msg_size);
 
@@ -75,6 +75,10 @@ int main(void) {
 	}
 	else{
 		printf("\nThe encrypted message is: \n");
+		int num_written= display_cryp(cryp, msg_size);
+		printf("\nNumber of characters written = %d", num_written);
+
+		printf("\nUsing the old method the message is: \n");
 		for(int i=0 ; i< msg_size; i++){
 			printf("%ld",cryp[i]);
 		}

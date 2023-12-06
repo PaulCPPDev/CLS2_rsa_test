@@ -121,6 +121,8 @@ int read_cryp(long cryp[], size_t elements){
 */
 
 int read_cryp(long cryp[], size_t elements){
+	if(cryp == NULL || elements == 0)
+		return -1;
 	size_t i;
 	for(i=0; i< elements; i++){
 		// Invalid input
