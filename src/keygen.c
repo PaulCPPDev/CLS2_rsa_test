@@ -13,9 +13,12 @@
  */
 
 
+#include "../include/user.h"
+
 #include <stdio.h>
 #include <stddef.h>
-
+#include <stdlib.h>
+#include <time.h>
 
 
 
@@ -77,6 +80,8 @@ int is_prime(int number){
  *
  * We used the Euclidiean Algorithm to find the GCD of 2 numbers. The pseudo code was
  * obtained on Coursera from the course "Algorithms and Datastructures" from UC Sandiego.
+ * <https://www.coursera.org/specializations/data-structures-algorithms>
+ *
  *
  * @param 2 numbers of type long.
  * @return The greatest common divisor of the two arguments, or −1 in case of an error.
@@ -160,6 +165,10 @@ long phi(int p, int q){
  * @brief Generates the public key exponent.
  *
  * Generates a new, random public key exponent e, according to the RSA definition.
+ * The function first calculates a list of possible public exponent values,
+ * filters the ones that are coprime with phi, and then randomly selects one of the remaining values
+ * The public exponent together with the modulus n, will become the public key.
+ *
  *
  * @param The Euler's totient phi, of type long.
  * @return The public key exponent e, or −1 in case of an error.
@@ -173,7 +182,8 @@ long public_exponent(long phi){
 		// store the possible values of e
 		// the exponent e is mostly in the range
 		// e = 3, 5, 17, 65537
-		long public_exponent = 3;
+		long count = 0;
+		long public_exponent[(phi/2) +1];
 
 		for(long i = 3; i < phi; i++){
 			// ignore all even numbers
@@ -181,65 +191,30 @@ long public_exponent(long phi){
 				continue;
 			else {
 
-				// find the GCD using Euclidiean algorithm from Chatgpt
-				long number_1 = i;
-				long number_2 = phi;
-				while(number_2 != 0){
-					long temp = number_2;
-					number_2 = number_1 % number_2;
-					number_1 = temp;
-				}
-
 				// Check if the GCD = 1
-				if(number_1 ==1){
-					public_exponent = i;
-					break;
+				if(gcd(i,phi) ==1){
+					public_exponent[count] = i;
+					count++;
+					//break;
 				}
 
 			}
 		}
+		
 
+		// make the public key random 
 
+		// Seed the random number generator, with the current time
+		srand(time(NULL));
 
-		return public_exponent;
+		// Generate random index within  the range of the array
+		int random_index = rand() % count;
+
+		// return random exponent
+
+		return public_exponent[random_index];
 	}
 }
-
-
-
-
-
-
-/**
- * @brief Computes GCD with Extended Euclidiean Algorithm
- *
- * Computes the Extended Euclidean Algorithm.  The original source code is from
- * geekforgeeks <https://www.geeksforgeeks.org/c-program-for-basic-and-extended-euclidean-algorithms-2/>
- *
- * @param 
- * @return The GCD.
- */
-
-long gcdExtended(long phi, long e, long* x, long* y)
-{
-    // Base Case
-    if (phi == 0) {
-        *x = 0;
-        *y = 1;
-        return e;
-    }
- 
-    long  x1, y1; // To store results of recursive call
-    long gcd = gcdExtended(e % phi, phi, &x1, &y1);
- 
-    // Update x and y using results of recursive
-    // call
-    *x = y1 - (e / phi) * x1;
-    *y = x1;
- 
-    return gcd;
-}
-
 
 
 
@@ -250,6 +225,9 @@ long gcdExtended(long phi, long e, long* x, long* y)
  * @brief Generates the private key exponent.
  *
  * Computes the private key exponent d according to the RSA definition.
+ * The function uses the extended Euclidean algorithm to calculate the GCD of phi and e.
+ * It checks for coprimality, and then adjust the 
+ * private exponent, to ensure it is positive before returning it.
  *
  * @param the public exponent, and Euler's totient phi. Both of type long.
  * @return The private key exponent d, or −1 in case of an error.

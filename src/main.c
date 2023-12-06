@@ -26,21 +26,82 @@
 
 
 int main(void) {
-	int number;
-	printf("Enter a number to check if it's prime: ");
-	if( scanf("%d", &number) == 1 && number > 0 ){
-		if(is_prime(number) == 1)
-			printf("%d is prime\n", number);
-		else if(is_prime(number)==-1){
-			printf("%d is invalid\n", number);
-		}
-		else
-			printf("%d is not prime\n", number);
+	char message[MSG_SIZE];
+	long cryp[MSG_SIZE];
+	long e, n, p, q, phi_;
+	size_t elements = MSG_SIZE;
+
+	// ask for p & q
+	printf("Enter p: ");
+	scanf("%ld", &p);
+	printf("\nEnter q: ");
+	scanf("%ld", &q);
+	
+	// Calculate n
+	n = modulus(p,q);
+	printf("\nn = %ld", n);
+
+	// Calculate phi
+	phi_ = phi(p,q);
+	printf("\nphi(n) = %ld\n", phi_);
+
+	// Generate public exponent
+	e = public_exponent(phi_);
+	printf("The public exponent e = %ld\n",e);
+	
+	//printf("\nEnter the modulus n: ");
+	//scanf("%ld", &n);
+	
+	// Generate the private exponent
+	long private_key = private_exponent(e,phi_);
+	printf("\nThis is you private key, make sure to hide it well\n%ld", private_key);
+
+
+	// Enter message to be encrypted
+	printf("\nEnter a message to be encrypted:\n");
+	
+	int msg_size = 0;
+	
+	scanf(" ");
+	if(scanf("%[^\n]", message) >= 1)
+		msg_size = strlen(message);
+		
+	printf("\nmsg_size = %d  message =%s",msg_size, message);
+	
+	int was_encrypted = encrypt(e, n, message, cryp, msg_size);
+
+	if(!was_encrypted){
+		printf("\nError\n");
 	}
 	else{
-		// if there is an error clear the input buffer
-		int c;
-		while((c = getchar()) != '\n' && c!=EOF);
-		printf("\nInvalid!\n");
+		printf("\nThe encrypted message is: \n");
+		for(int i=0 ; i< msg_size; i++){
+			printf("%ld",cryp[i]);
+		}
+		printf("\n");
 	}
+	
+
+	// Decryption
+	char decrypted_message[100];
+	long d = 1;
+	printf("Enter the decryption key d: ");
+	scanf("%ld", &d);
+	int num_char = decrypt(d, n, cryp, decrypted_message, msg_size);
+	
+	printf("\nNumber of elements decrypted =  %d\n", num_char);
+
+	if(num_char <= 0)
+		printf("\nError decrypting the message\n");	
+	if(decrypted_message == NULL)
+		printf("\nDecrypted message is Null\n");
+	else
+		printf("\nDecrypted message is not null\n");
+
+	printf("%s\n",decrypted_message);
+
+	
+	printf("\n");
+
+
 }
