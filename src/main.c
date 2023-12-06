@@ -26,7 +26,7 @@
 
 
 int main(void) {
-	/*char message[MSG_SIZE];
+	char message[MSG_SIZE];
 	long cryp[MSG_SIZE];
 	long e, n;
 	size_t elements = MSG_SIZE;
@@ -36,10 +36,14 @@ int main(void) {
 	printf("\nEnter the modulus n: ");
 	scanf("%ld", &n);
 	printf("\nEnter a message to be encrypted:\n");
-	int msg_size = scanf("%s", message);
-	if(scanf("%[^\n]", message)<=msg_size){
-		printf("\n%s", message);
-	}
+	
+	int msg_size = 0;
+	
+	scanf(" ");
+	if(scanf("%[^\n]", message) >= 1)
+		msg_size = strlen(message);
+		
+	printf("\nmsg_size = %d  message =%s",msg_size, message);
 	
 	int was_encrypted = encrypt(e, n, message, cryp, msg_size);
 
@@ -52,19 +56,29 @@ int main(void) {
 			printf("%ld",cryp[i]);
 		}
 		printf("\n");
-	}*/
+	}
+	
 
-	// Modular exponentiation function
-	long base, exp, mod;
-	printf("\nEnter the base m: ");
-        scanf("%ld", &base);
-	printf("\nEnter the exponent e: ");
-        scanf("%ld", &exp);
-	printf("\nEnter the modulus n: ");
-        scanf("%ld", &mod);
-	long modexp = modular_exponentiation(base, exp, mod);
-	printf("\nThe modular exponentiation is = %ld\n", modexp);
+	// Decryption
+	char decrypted_message[100];
+	long d = 1;
+	printf("Enter the decryption key d: ");
+	scanf("%ld", &d);
+	int num_char = decrypt(d, n, cryp, decrypted_message, msg_size);
+	
+	printf("\nNumber of elements decrypted =  %d\n", num_char);
 
+	if(num_char <= 0)
+		printf("\nError decrypting the message\n");	
+	if(decrypted_message == NULL)
+		printf("\nDecrypted message is Null\n");
+	else
+		printf("\nDecrypted message is not null\n");
+
+	printf("%s\n",decrypted_message);
+
+	
+	printf("\n");
 
 
 }

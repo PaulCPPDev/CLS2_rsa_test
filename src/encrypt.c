@@ -34,20 +34,36 @@
  * or −1 in case of an error. 
  */
 
+
+
 int encrypt(long e, long n, char msg[], long cryp[], size_t elements) {
-    if (msg == NULL || cryp == NULL || elements == 0) {
-        return -1; // Invalid input
-    }
+	if (msg == NULL || cryp == NULL || elements == 0) {
+		return -1; // Invalid input
+	}
 
-    size_t msgLen = elements;
-	
-    for (size_t i = 0; i < msgLen; i++) {
-        cryp[i] = modular_exponentiation(msg[i], e, n);
-    }
+	// loop through the message to check if the message is null terminated
+	size_t is_null_terminated = 0;
+	for (size_t i = 0; i<= elements; i++){
+		if (msg[i] == '\0'){
+			is_null_terminated++;
+			break;
+		}
+	}
 
-    cryp[msgLen] = '\0'; // Null-terminate the encrypted string
+	// check if the message is null terminated
+	if(!is_null_terminated)
+		return -1;
 
-    return msgLen + 1; // Return the number of characters encrypted plus 1 for '\0'
+
+	// convert the message into numbers
+	size_t count = 0;	
+	for (count  = 0; count < elements; count++) {
+		cryp[count] = modular_exponentiation((long)(msg[count]), e, n);
+    	}
+
+    cryp[elements] = '\0'; // Null-terminate the encrypted string
+
+    return count + 1; // Return the number of characters encrypted plus 1 for '\0'
 }
 
 /*
