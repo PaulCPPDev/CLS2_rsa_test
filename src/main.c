@@ -26,9 +26,21 @@
 
 
 int main(void) {
-	int number_read = read_number();
-	if(number_read < 0 )
-		printf("Invalid Input\n");
-	else
-		printf("Number = %d\n", number_read);
+	int number;
+	printf("Enter a number to check if it's prime: ");
+	if( scanf("%d", &number) == 1 && number > 0 ){
+		if(is_prime(number) == 1)
+			printf("%d is prime\n", number);
+		else if(is_prime(number)==-1){
+			printf("%d is invalid\n", number);
+		}
+		else
+			printf("%d is not prime\n", number);
+	}
+	else{
+		// if there is an error clear the input buffer
+		int c;
+		while((c = getchar()) != '\n' && c!=EOF);
+		printf("\nInvalid!\n");
+	}
 }

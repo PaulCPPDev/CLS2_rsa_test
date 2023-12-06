@@ -30,7 +30,9 @@
  *
  *
  * The code is inspired from the mathematical definition of a prime number on wikipedia, which is that
- * a prime number is a number greater than one and  only divisible by one and itself.
+ * a prime number is a number greater than one and  only divisible by one and itself. The algorithm can be
+ * further optimised by looping only till sqrt(n), which would give a time complexity of O(sqrt(n)), but for
+ * that we need the math.h library.
  *
  * @param The number you want to check if it is prime.
  * @return 1 if the number is prime, 0 if the number is not prime, 
@@ -40,9 +42,9 @@ int is_prime(int number){
 	if( !( (number >=100) &&  (number <= 1000)) ){
 		return -1;
 	}
-	else if (number < 0){
+	/*else if (number < 0){
 		return 0;
-	}
+	}*/
 	else{
 		int number_of_divisions = 0;
 		
