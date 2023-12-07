@@ -120,16 +120,18 @@ int read_cryp(long cryp[], size_t elements){
 }
 */
 
+/*
 int read_cryp(long cryp[], size_t elements){
 	if(cryp == NULL || elements == 0)
 		return -1;
 	size_t i;
+
 	for(i=0; i< elements; i++){
 		// Invalid input
 		if(scanf("%ld", &cryp[i])!= 1){
 			return -1;
 		}
-	
+		
 		// check if zero was entered
 		if(cryp[i] == 0){
 			if(i != elements -1){
@@ -144,6 +146,48 @@ int read_cryp(long cryp[], size_t elements){
 
 	return i;
 }
+*/
+
+/*
+int read_cryp(long cryp[], size_t elements){
+	char input[elements];
+	if(fgets(input, elements, stdin) != NULL)
+		printf("\n%s",input);
+}
+*/
+
+int read_cryp(long cryp[], size_t elements){
+	size_t count = 0;
+	long value;
+
+	// Read the encrypted message from stdin
+	while(1){
+		// Try to read an Integer
+		if(scanf("%ld", &value) != 1){
+			return -1; // If the input is invalid
+		}
+
+		// Check for the end of the message
+		if (value == 0) {
+			break;
+		}
+
+		// Check if the array is full
+		if(count >= elements){
+			return -1;
+		}
+
+		// Store the value in the array
+		cryp[count] = value;
+		count++;
+	}
+
+
+	return count; // Return the number of values read
+	
+
+}
+
 
 
 
