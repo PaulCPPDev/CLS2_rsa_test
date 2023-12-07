@@ -169,6 +169,8 @@ int read_cryp(long cryp[], size_t elements){
 
 		// Check for the end of the message
 		if (value == 0) {
+			cryp[count] = value;
+			count++;
 			break;
 		}
 
@@ -204,7 +206,9 @@ int display_msg(char msg[], size_t elements){
 	// check the message is not empty
 	if((msg != NULL) && (elements > 0) ){
 		size_t i;
-                for(i = 0; i < elements; i++){
+                for(i = 0; i <= elements; i++){
+			if(msg[i]== '\0')
+				break;
 			printf("%c", msg[i]);
 		}
 		puts("");

@@ -34,10 +34,12 @@ int main(void) {
 	printf("\nEnter a number: ");
 	scanf("%ld", &elements);
 	
+	//elements = MSG_SIZE;
+
 	long cryp[elements];
-	char msg[elements*2];
+	char msg[elements];
 	
-       printf("\nEnter the encrypted message: ");	
+       printf("\nEnter the encrypted message (100 Characters MAX) : ");	
 	
 	int num_values = read_cryp(cryp, elements);
 	
@@ -60,8 +62,11 @@ int main(void) {
 	// decrypt the  message
 	long values_decrypted = decrypt(d, n, cryp, msg, elements);
 
-	printf("\nnumber of values decrypted = %ld", values_decrypted);
-	printf("\ndecrypted message is \n%s\n", msg);
+	printf("\nnumber of values decrypted = %ld\n", values_decrypted);
+	//printf("\ndecrypted message is \n%s\n", msg);
+	//
+	//display the message
+	display_msg(msg,elements);
 
 
 
