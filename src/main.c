@@ -26,9 +26,47 @@
 
 
 int main(void) {
-	
-	printf("\nHello World!\n");
 
+
+
+        long elements,n,d;
+
+        printf("\nEnter a number: ");
+        scanf("%ld", &elements);
+
+        //elements = MSG_SIZE;
+
+        long cryp[elements];
+        char msg[elements];
+
+       printf("\nEnter the encrypted message (100 Characters MAX) : ");
+
+        int num_values = read_cryp(cryp, elements);
+
+        if (num_values>=0) {
+                printf("\nEncrypted message stored in cryp: ");
+                for(int i=0; i < num_values ; i++){
+                        printf("%ld ", cryp[i]);
+                }
+                printf("\n");
+        }
+
+
+        printf("\nEnter the modulo\n");
+        scanf("%ld", &n);
+
+        printf("\nEnter your private key\n");
+        scanf("%ld", &d);
+
+
+        // decrypt the  message
+        long values_decrypted = decrypt(d, n, cryp, msg, elements);
+
+        printf("\nnumber of values decrypted = %ld\n", values_decrypted);
+        //printf("\ndecrypted message is \n%s\n", msg);
+        //
+        //display the message
+        display_msg(msg,elements);
 
 
 }
