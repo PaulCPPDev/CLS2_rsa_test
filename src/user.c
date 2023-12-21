@@ -8,8 +8,7 @@
  *
  * @brief RSA User module.
  *
- * This is the module that contains user defined helper functions, it contains the
- * functions string_to_integer()
+ * This is the module that contains user defined helper functions.
  */
 
 

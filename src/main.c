@@ -35,7 +35,7 @@ static char const *const menu_entries[] = {[GENERATE_KEYS] = "Generate keys",
 
 static void display_menu() {
   puts("*****************************************");
-  puts("                RSA GAME");
+  puts("                ENIGMA");
   puts("*****************************************");
 
   for (enum menu_entry_ids id = 1; id - 1 < NUM_ENTRIES; ++id) {
