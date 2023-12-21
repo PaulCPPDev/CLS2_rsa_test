@@ -6,7 +6,8 @@
  * @author Ait Ouhamou Yassin <yassin.aitouhamou@students.bfh.ch>
  * @date 19.12.2023
  *
- * @brief  (main module).
+ * @brief  (main module). This code is a modified version of the template from 
+ * Pascal Mainini <pascal.mainini@bfh.ch>
  *
  * This is the main module of the modular programming example. It contains the
  * main()-function, and the logic used for the main menu. 
@@ -208,6 +209,7 @@ int main() {
 
       
       //decrypt the message
+      // problem here shows garbage values don't know why
       long values_decrypted = decrypt(d, decryp_modulus, crypted_msg, decrypted_msg, num_values);
       printf("\nnumber of values decrypted = %ld\n", values_decrypted);      
       
@@ -267,9 +269,13 @@ int main() {
     	
     	int q_num  = 0;
     	printf("Enter a number between 0 and 9\n");
-	if(scanf("%d", &q_num)){}; 
+	if(scanf("%d", &q_num) != 1){
+		puts("Invalid Input try again \n\n");
+		while(getchar() != '\n'); // clear the Input buffer
+		break;
+	}; 
 	if(q_num <0 || q_num>9){
-		puts("Out of range");
+		puts("Out of range\n\n");
 		break;
 	}   	
     	printf("\nmodulus n = %ld \t private key d = %ld \t message length = %ld\n\n", rsa_modulus[q_num], decryption_key[q_num], ans_length[q_num]);
