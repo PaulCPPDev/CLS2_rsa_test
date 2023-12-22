@@ -61,7 +61,7 @@ int encrypt(long e, long n, char msg[], long cryp[], size_t elements) {
 		cryp[count] = modular_exponentiation((long)(msg[count]), e, n);
     	}
 
-    cryp[elements] = '\0'; // Null-terminate the encrypted string
+    cryp[elements] = 0; // Null-terminate the encrypted string
 
     return count + 1; // Return the number of characters encrypted plus 1 for '\0'
 }

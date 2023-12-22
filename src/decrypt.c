@@ -37,7 +37,7 @@ int decrypt(long d, long n, long cryp[], char msg[], size_t elements){
 	
 	size_t msg_length = 0;
 	for(size_t i= 0; i<elements ; i++){
-		if(cryp[i] == '\0')
+		if(cryp[i] == 0)
 			break;
 		long decrypted_value = modular_exponentiation(cryp[i], d, n);
 

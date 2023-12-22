@@ -26,7 +26,6 @@
 
 #define MSG_SIZE 100
 
-
 enum menu_entry_ids { GENERATE_KEYS, ENCRYPT_MESSAGE, DECRYPT_MESSAGE, RIDDLE, QUIT, NUM_ENTRIES };
 static char const *const menu_entries[] = {[GENERATE_KEYS] = "Generate keys",
 					   [ENCRYPT_MESSAGE] = "Encrypt a message",
@@ -122,7 +121,7 @@ int main() {
       // Generate public exponent
       long e = 0;
       e = public_exponent(phi_euler);
-      printf("\nThe public key (n,e) = (%ld,%ld)\n\n", n, e);
+      printf("\nThe public key (n,e) = ( %ld , %ld )\n\n", n, e);
       
       // Generate private exponent
       long private_key = private_exponent(e,phi_euler);
