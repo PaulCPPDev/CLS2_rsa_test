@@ -225,7 +225,7 @@ int main() {
     
     case RIDDLE:
     	say("Riddle Game!");
-    	say("In this game we give you a question and it's encrypted answer. (HINT) use option 3 of the user menu to find the correct answer");
+    	say("In this game we give you a question and its encrypted answer. (HINT) use option 3 of the user menu to find the correct answer");
     	char questions[10][100] = {"Why do programmers prefer dark mode?",
     					 "Why did the computer catch a cold?", 
     					 "How do you comfort a JavaScript bug?", 
